@@ -65,6 +65,18 @@ class Set {
     })
     return differenceSet;
   }
+
+  intersection(otherset){
+    const intersection = new Set();
+    const firstSet = this.collection;
+    const secondSet = otherset;
+    firstSet.forEach(function(ele){
+      if (secondSet.has(ele)){
+        intersection.add(ele);
+      }
+    })
+    return intersection;
+  }
 }
 
 let firstset = new Set();
@@ -80,6 +92,7 @@ console.log(firstset.values());
 console.log(firstset.add(3))
 console.log(firstset.remove(0));
 console.log(firstset.values());
+firstset.add(9);
 
 let secondset = new Set();
 secondset.add(2);
@@ -90,3 +103,4 @@ console.log(secondset)
 console.log(firstset.union(secondset));
 console.log(firstset.difference(secondset));
 console.log(secondset.difference(firstset));
+console.log(secondset.intersection(firstset));
