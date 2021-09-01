@@ -36,3 +36,48 @@ console.log(myQueue.front());
 myQueue.Empty();
 console.log(myQueue.size());
 
+class QueueElement{
+  constructor(ele,priority){
+    this.ele = ele;
+    this.priority = priority;
+  }
+}
+
+class PriorityQueue extends Queue{
+  constructor(){
+    super();
+  }
+
+  enqueue(ele,priority){
+    const queueElement = new QueueElement(ele,priority);
+
+    if(this.size() === 0){
+      this.collection.push(queueElement);
+    }
+
+    else{
+      let added = false;
+
+      for (let i = 0; i < this.collection.size; i++){
+        if (queueElement.priority < this.collection[i].priority){
+          this.collection.splice(i,0,queueElement)
+          added = true;
+          break;
+        }
+      }
+
+      if (!added){
+        this.collection.push(queueElement);
+      }
+    }
+
+  }
+}
+
+const myPriorityQueue = new PriorityQueue();
+myPriorityQueue.enqueue(0,1);
+console.log(myPriorityQueue);
+myPriorityQueue.enqueue(5,3);
+myPriorityQueue.enqueue(7,2);
+console.log(myPriorityQueue);
+
