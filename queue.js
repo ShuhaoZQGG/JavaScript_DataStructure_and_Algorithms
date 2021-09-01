@@ -33,4 +33,6 @@ myQueue.dequeue();
 console.log(myQueue);
 console.log(myQueue.size());
 console.log(myQueue.front());
+myQueue.Empty();
+console.log(myQueue.size());
 
