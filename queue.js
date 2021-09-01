@@ -19,7 +19,7 @@ class Queue{
     return this.collection.length;
   }
 
-  Empty(){  
+  empty(){  
     this.collection.splice(0,this.collection.length);
   }
 }
@@ -33,7 +33,7 @@ myQueue.dequeue();
 console.log(myQueue);
 console.log(myQueue.size());
 console.log(myQueue.front());
-myQueue.Empty();
+myQueue.empty();
 console.log(myQueue.size());
 
 class QueueElement{
@@ -50,17 +50,19 @@ class PriorityQueue extends Queue{
 
   enqueue(ele,priority){
     const queueElement = new QueueElement(ele,priority);
-
-    if(this.size() === 0){
+    if (queueElement.priority <=0){
+      return false;
+    }
+    if(super.size() === 0){
       this.collection.push(queueElement);
     }
 
     else{
       let added = false;
 
-      for (let i = 0; i < this.collection.size; i++){
+      for (let i = 0; i < super.size(); i++){
         if (queueElement.priority < this.collection[i].priority){
-          this.collection.splice(i,0,queueElement)
+          this.collection.splice(i,0,queueElement);
           added = true;
           break;
         }
@@ -72,12 +74,38 @@ class PriorityQueue extends Queue{
     }
 
   }
+
+  dequeue(){
+    return super.dequeue();
+  }
+
+  front(){
+    return super.front();
+  }
+
+  size(){
+    return super.size();
+  }
+
+  empty(){
+    return super.empty();
+  }
 }
+
+
 
 const myPriorityQueue = new PriorityQueue();
 myPriorityQueue.enqueue(0,1);
 console.log(myPriorityQueue);
 myPriorityQueue.enqueue(5,3);
 myPriorityQueue.enqueue(7,2);
+myPriorityQueue.enqueue(9,6);
+myPriorityQueue.enqueue(6,5);
+myPriorityQueue.dequeue();
+
 console.log(myPriorityQueue);
 
+console.log(myPriorityQueue.front());
+console.log(myPriorityQueue.size());
+myPriorityQueue.empty();
+console.log(myPriorityQueue);
